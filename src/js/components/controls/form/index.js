@@ -7,7 +7,9 @@ import SelectControl from './select'
 import CheckboxGroupControl from './checkbox-group'
 import RadioGroupControl from './radio-group'
 import ButtonControl from './button'
+import Project from './projectButton'
 import DateControl from './input.date'
+import ProjectControl from './project'
 
 export default [
   ButtonControl,
@@ -20,4 +22,6 @@ export default [
   SelectControl,
   CheckboxGroupControl,
   RadioGroupControl,
+  ProjectControl,
+  Project,
 ]

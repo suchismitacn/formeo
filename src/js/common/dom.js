@@ -102,6 +102,38 @@ class DOM {
 
     let element = document.createElement(tag)
 
+    element.className = 'special-input'
+    if (tag === 'project') {
+      const projectContainer = document.createElement('div')
+      projectContainer.style.display = 'flex'
+      element.append(projectContainer)
+
+      const firstProject = document.createElement('select')
+      firstProject.name = 'project-name[]'
+      var opt1 = document.createElement('option')
+      opt1.value = ''
+      opt1.innerHTML = 'No Project Selected'
+
+      firstProject.appendChild(opt1)
+
+      const secondProject = document.createElement('select')
+      secondProject.name = 'project-name[]'
+      var opt2 = document.createElement('option')
+      opt2.value = ''
+      opt2.innerHTML = 'No Project Selected'
+
+      secondProject.appendChild(opt2)
+      const thirdProject = document.createElement('select')
+      thirdProject.name = 'project-name[]'
+      var opt3 = document.createElement('option')
+      opt3.value = ''
+      opt3.innerHTML = 'No Project Selected'
+
+      thirdProject.appendChild(opt3)
+      projectContainer.append(firstProject)
+      projectContainer.append(secondProject)
+      projectContainer.append(thirdProject)
+    }
     /**
      * Object for mapping contentType to its function
      * @type {Object}
@@ -159,6 +191,9 @@ class DOM {
           wrap.className = elem.attrs.className
         }
         wrap.config = Object.assign({}, elem.config)
+        if (elem.attrs.type === 'checkbox' || elem.attrs.type === 'radio') {
+          wrap.id = elem.id
+        }
         return this.create(wrap, isPreview)
       }
       processed.push('options')
@@ -408,6 +443,54 @@ class DOM {
             value: option.value || '',
             id: `${id}-${i}`,
             ...rest,
+            ...(elem.attrs.required && { required: 'required' }),
+          },
+          action,
+        }
+        const optionLabel = {
+          tag: 'label',
+          attrs: {
+            for: `${id}-${i}`,
+          },
+          config: {
+            inputWrap: 'form-check',
+          },
+          children: option.label,
+        }
+        const inputWrap = {
+          children: [input, optionLabel],
+          className: [`f-${fieldType}`],
+        }
+
+        if (elem.attrs.className) {
+          elem.config.inputWrap = elem.attrs.className
+        }
+
+        if (elem.config.inline) {
+          inputWrap.className.push(`f-${fieldType}-inline`)
+        }
+
+        if (option.selected) {
+          input.attrs.checked = true
+        }
+
+        if (isPreview) {
+          optionLabel.attrs.contenteditable = true
+        }
+
+        return inputWrap
+      }
+
+      const checkboxInput = () => {
+        const input = {
+          tag: 'input',
+          attrs: {
+            name: id + '[]',
+            type: fieldType,
+            value: option.value || '',
+            id: `${id}-${i}`,
+            ...rest,
+            ...(elem.attrs.required && { required: 'required' }),
           },
           action,
         }
@@ -466,7 +549,7 @@ class DOM {
             action: elem.action,
           })
         },
-        checkbox: defaultInput,
+        checkbox: checkboxInput,
         radio: defaultInput,
       }
 
@@ -791,7 +874,7 @@ class DOM {
    */
   formGroup(content, className = '') {
     return {
-      className: ['f-field-group', className],
+      className: ['f-field-group form-group', className],
       children: content,
     }
   }

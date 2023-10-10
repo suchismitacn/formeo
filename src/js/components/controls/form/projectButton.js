@@ -1,10 +1,10 @@
 import i18n from 'mi18n'
 import Control from '../control'
 
-class ButtonControl extends Control {
+class Project extends Control {
   constructor() {
     const buttonConfig = {
-      tag: 'span',
+      tag: 'project',
       attrs: {
         className: [{ label: 'grouped', value: 'f-btn-group' }, { label: 'ungrouped', value: 'f-field-group' }],
       },
@@ -15,7 +15,7 @@ class ButtonControl extends Control {
       meta: {
         group: 'common',
         icon: 'button',
-        id: 'button',
+        id: 'project-button',
       },
       options: [
         {
@@ -54,4 +54,4 @@ class ButtonControl extends Control {
   }
 }
 
-export default ButtonControl
+export default Project

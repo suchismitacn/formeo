@@ -14,7 +14,7 @@ export const CONTROL_GROUP_CLASSNAME = 'control-group'
 export const STAGE_CLASSNAME = `${PACKAGE_NAME}-stage`
 export const ROW_CLASSNAME = `${PACKAGE_NAME}-row`
 export const COLUMN_CLASSNAME = `${PACKAGE_NAME}-column`
-export const FIELD_CLASSNAME = `${PACKAGE_NAME}-field`
+export const FIELD_CLASSNAME = `${PACKAGE_NAME}-field custom-class`
 
 export const CHILD_CLASSNAME_MAP = new Map([
   [STAGE_CLASSNAME, ROW_CLASSNAME],

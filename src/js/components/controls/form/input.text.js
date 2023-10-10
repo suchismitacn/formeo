@@ -9,7 +9,7 @@ class TextControl extends Control {
       attrs: {
         required: false,
         type: 'text',
-        className: '',
+        className: 'form-control',
       },
       config: {
         label: i18n.get('controls.form.input.text'),

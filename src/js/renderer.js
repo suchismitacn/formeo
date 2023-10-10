@@ -61,9 +61,9 @@ export default class FormeoRenderer {
     this.renderedForm = dom.render(config)
     dom.empty(this.container)
 
-    this.applyConditions()
-
     this.container.appendChild(this.renderedForm)
+
+    this.applyConditions()
   }
 
   orderChildren = (type, order) => order.reduce((acc, cur) => [...acc, this.form[type][cur]], [])
@@ -223,11 +223,24 @@ export default class FormeoRenderer {
     }
 
     // Compare as string, this allows values like "true" to be checked for properties like "checked".
-    const sourceValue = String(evt.target[sourceProperty])
+    // const sourceValue = String(evt.target[sourceProperty])
+    const sourceValue = this.getInputValue(evt, sourceProperty)
+
     const targetValue = String(isAddress(target) ? this.getComponent(target)[targetProperty] : target)
     return comparisonMap[comparison] && comparisonMap[comparison](sourceValue, targetValue)
   }
 
+  getInputValue = (evt, sourceProperty) => {
+    if (evt.target.hasAttribute('type') && evt.target.type === 'checkbox') {
+      return Array.from(this.renderedForm.querySelectorAll(`[name="${evt.target.name}"]:checked`)).map(
+        input => input.value
+      )
+    } else if (evt.target.hasAttribute('type') && evt.target.type === 'radio') {
+      return (this.renderedForm.querySelector(`[name="${evt.target.name}"]:checked`) || {}).value
+    } else {
+      return String(evt.target[sourceProperty])
+    }
+  }
   execResult = ({ assignment, target, targetProperty, value }) => {
     const assignMap = {
       equals: elem => {
@@ -274,7 +287,11 @@ export default class FormeoRenderer {
     if (isExternalAddress(address)) {
       components.push(this.external[componentId])
     } else {
-      components.push(...this.renderedForm.querySelectorAll(`[name=f-${componentId}]`))
+      if (this.renderedForm.querySelectorAll(`[name="f-${componentId}[]"]`).length) {
+        components.push(...this.renderedForm.querySelectorAll(`[name="f-${componentId}[]"]`))
+      } else {
+        components.push(...this.renderedForm.querySelectorAll(`[name=f-${componentId}]`))
+      }
     }
 
     return components
