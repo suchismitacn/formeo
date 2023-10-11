@@ -1,6 +1,6 @@
 {
   "name": "formeo",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "main": "dist/formeo.min.js",
   "files": [
     "dist/*",
@@ -88,22 +88,22 @@
     "defaults": "webpack-defaults"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@babel/node": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.9.0",
-    "@babel/preset-env": "^7.4.2",
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.0",
+    "@babel/node": "^7.22.19",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@babel/preset-env": "^7.22.20",
     "@commitlint/cli": "^7.5.2",
     "@commitlint/config-angular": "^7.5.0",
     "@semantic-release/changelog": "3.0.0",
     "@semantic-release/git": "7.0.1",
     "@semantic-release/npm": "5.0.2",
     "autoprefixer": "8.4.1",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^24.5.0",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "1.0.0",
     "compression-webpack-plugin": "1.1.11",
     "copy-webpack-plugin": "4.6.0",
@@ -130,10 +130,10 @@
     "husky": "^2.3.0",
     "jest": "^24.5.0",
     "lint-staged": "7.3.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mi18n": "^0.4.8",
     "mini-css-extract-plugin": "^0.9.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "postcss-loader": "2.1.4",
@@ -142,18 +142,18 @@
     "sass-loader": "7.0.1",
     "semantic-release": "^15.13.4",
     "style-loader": "0.21.0",
-    "svg-sprite": "^1.5.0",
+    "svg-sprite": "^1.5.4",
+    "terser-webpack-plugin": "^4.2.3",
     "travis-deploy-once": "^5.0.11",
-    "uglifyjs-webpack-plugin": "2.0.1",
     "uuid": "3.3.2",
-    "webpack": "^4.32.2",
-    "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.4.1"
+    "webpack": "^4.47.0",
+    "webpack-bundle-analyzer": "^3.9.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "engines": {},
   "dependencies": {
-    "sortablejs": "1.10.2"
+    "sortablejs": "1.13.0"
   },
   "lint-staged": {
     "src/**/*.js": [

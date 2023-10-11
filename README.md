@@ -19,7 +19,7 @@ A pure JavaScript module for drag and drop form creation.
 
 ## Installation
 
-### NPM
+### NPM (Compatibility tested with Node v14.19.0 LTS, not working with higher versions)
 
 ```
 npm install --save formeo
