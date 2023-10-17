@@ -1,5 +1,5 @@
 {
-  "name": "formeo-custom",
+  "name": "formeo",
   "version": "1.6.3",
   "main": "dist/formeo.min.js",
   "files": [
