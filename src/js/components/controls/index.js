@@ -1,7 +1,6 @@
 import Sortable from 'sortablejs'
 import i18n from 'mi18n'
 import cloneDeep from 'lodash/cloneDeep'
-import actions from '../../common/actions'
 import { indexOfNode, orderObjectsBy, get } from '../../common/helpers'
 import events from '../../common/events'
 import dom from '../../common/dom'
@@ -10,7 +9,7 @@ import Panels from '../panels'
 import Field from '../fields/field'
 import Control from './control'
 import { CONTROL_GROUP_CLASSNAME } from '../../constants'
-import Components, { Stages, Rows } from '..'
+import { Stages, Rows } from '..'
 
 // control configs
 import layoutControls from './layout'
@@ -211,28 +210,9 @@ export class Controls {
       },
     }
 
-    const saveBtn = {
-      ...dom.btnTemplate({ content: [dom.icon('floppy-disk'), i18n.get('save')], title: i18n.get('save') }),
-      className: ['save-form'],
-      action: {
-        click: ({ target }) => {
-          const { formData } = Components
-          const saveEvt = {
-            action: () => {},
-            coords: dom.coords(target),
-            message: '',
-            button: target,
-          }
-          actions.click.btn(saveEvt)
-
-          return actions.save.form(formData)
-        },
-      },
-    }
-
     const formActions = {
       className: 'form-actions f-btn-group',
-      content: Object.entries({ clearBtn, saveBtn }).reduce((acc, [key, value]) => {
+      content: Object.entries({ clearBtn }).reduce((acc, [key, value]) => {
         if (!this.options.disable.formActions.includes(key)) {
           acc.push(value)
         }
